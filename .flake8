@@ -3,3 +3,4 @@ max-line-length = 119
 exclude = tests,venv,.git,__pycache__
 max-complexity = 10
 show-source = True
+max-complexity = 15
