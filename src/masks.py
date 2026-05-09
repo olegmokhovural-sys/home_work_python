@@ -1,4 +1,4 @@
-def get_mask_card_number(card_number: int) -> str:
+def get_mask_card_number(card_number: str) -> str:
     """Функция, которая маскирует номер карты"""
     card_str = str(card_number)  # Преобразуем число в строку
     masked_number = []
@@ -16,10 +16,10 @@ def get_mask_card_number(card_number: int) -> str:
     return f"{masked_str[:4]} {masked_str[4:8]} {masked_str[8:12]} {masked_str[12:16]}"
 
 
-print(get_mask_card_number(7000792289606361))
+#print(get_mask_card_number(7000792289606361))
 
 
-def get_mask_account(account_number: int) -> str:
+def get_mask_account(account_number: str) -> str:
     """Функция, которая маскирует номер счета"""
     account_str = str(account_number)  # "73654108430135874305"
     last_four = account_str[-4:]  # "4305" (последние 4 символа)
@@ -27,4 +27,4 @@ def get_mask_account(account_number: int) -> str:
     return masked_account
 
 
-print(get_mask_account(73654108430135874305))
+#print(get_mask_account(73654108430135874305))
