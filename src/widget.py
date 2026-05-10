@@ -1,7 +1,7 @@
 from masks import get_mask_account, get_mask_card_number
 
 
-def init_row_separation(letters_digits: str) -> str:
+def mask_account_card(letters_digits: str) -> str:
     if not letters_digits:
         return "Ошибка: пустая строка"
 
@@ -42,7 +42,7 @@ def init_row_separation(letters_digits: str) -> str:
 
 # Использование
 card_info = input("Введите данные: ")
-print(init_row_separation(card_info))
+print(mask_account_card(card_info))
 
 
 def get_date(date_string: str) -> str:
