@@ -1,4 +1,4 @@
-def filter_by_state(list_dict: list, state: str = "EXECUTED") -> list:
+def filter_by_state(list_dict: list[dict], state: str = "EXECUTED") -> list[dict]:
     "Функция, которая фильтрует список словарей по значению ключа state"
     filtered_list = []
     for item in list_dict:
@@ -23,7 +23,7 @@ canceled_operations = filter_by_state(operations, "CANCELED")
 print(canceled_operations)
 
 
-def sort_by_date(list_dict: list, descending: bool = True) -> list:
+def sort_by_date(list_dict: list[dict], descending: bool = True) -> list[dict]:
     """Функция сортировки по дате"""
     sorted_list = list_dict.copy()
 
