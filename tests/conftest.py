@@ -1,5 +1,6 @@
 import pytest
 
+
 @pytest.fixture
 def operations_data():
     return [
