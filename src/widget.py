@@ -41,8 +41,8 @@ def mask_account_card(letters_digits: str) -> str:
 
 
 # Использование
-#card_info = input("Введите данные: ")
-#print(mask_account_card(card_info))
+# card_info = input("Введите данные: ")
+# print(mask_account_card(card_info))
 
 
 def get_date(date_string: str) -> str:

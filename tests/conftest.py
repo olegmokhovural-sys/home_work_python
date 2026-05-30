@@ -20,6 +20,7 @@ def sample_operations():
         {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
     ]
 
+
 @pytest.fixture
 def sample_transactions():
     """Возвращает список тестовых транзакций"""

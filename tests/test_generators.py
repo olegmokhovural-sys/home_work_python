@@ -1,13 +1,14 @@
-import pytest
 from typing import Generator
-from src.generators import filter_by_currency
-from src.generators import transaction_descriptions
-from src.generators import card_number_generator
+
+import pytest
+
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
-@pytest.mark.parametrize("currency_code, expected_ids", [
-
-    (
+@pytest.mark.parametrize(
+    "currency_code, expected_ids",
+    [
+        (
             "USD",
             [
                 {
@@ -37,10 +38,9 @@ from src.generators import card_number_generator
                     "from": "Visa Classic 6831982476737658",
                     "to": "Visa Platinum 8990922113665229",
                 },
-            ]
-    ),
-
-    (
+            ],
+        ),
+        (
             "RUB",
             [
                 {
@@ -61,17 +61,15 @@ from src.generators import card_number_generator
                     "from": "Visa Platinum 1246377376343588",
                     "to": "Счет 14211924144426031657",
                 },
-            ]
-    ),
-
-    ("EUR", []),
-
-    ("", []),
-])
+            ],
+        ),
+        ("EUR", []),
+        ("", []),
+    ],
+)
 def test_filter_by_currency(sample_transactions, currency_code, expected_ids):
 
     result_gen = filter_by_currency(sample_transactions, currency_code)
-
 
     result_list = list(result_gen)
 
@@ -109,20 +107,14 @@ def test_transaction_descriptions_empty_list():
         next(gen)
 
 
-@pytest.mark.parametrize("start, end, expected", [
-    (1, 3, [
-        "0000 0000 0000 0001",
-        "0000 0000 0000 0002",
-        "0000 0000 0000 0003"
-    ]),
-
-    (10, 12, [
-        "0000 0000 0000 0010",
-        "0000 0000 0000 0011",
-        "0000 0000 0000 0012"
-    ]),
-])
+@pytest.mark.parametrize(
+    "start, end, expected",
+    [
+        (1, 3, ["0000 0000 0000 0001", "0000 0000 0000 0002", "0000 0000 0000 0003"]),
+        (10, 12, ["0000 0000 0000 0010", "0000 0000 0000 0011", "0000 0000 0000 0012"]),
+    ],
+)
 def test_card_number_generator(start, end, expected):
-    '''Тестирует разные диапазоны чисел'''
+    """Тестирует разные диапазоны чисел"""
     result = list(card_number_generator(start, end))
     assert result == expected

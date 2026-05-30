@@ -49,7 +49,7 @@ transactions = [
 ]
 
 
-def filter_by_currency(transactions: list[dict[str, object]], currency_code: str) -> Generator:
+def filter_by_currency(transactions: list[dict], currency_code: str) -> Generator:
     """Генераторная функция, сортирующая список по валюте операции"""
     for transaction in transactions:
         if (
