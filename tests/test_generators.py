@@ -1,6 +1,8 @@
 import pytest
 from typing import Generator
 from src.generators import filter_by_currency
+from src.generators import transaction_descriptions
+from src.generators import card_number_generator
 
 
 @pytest.mark.parametrize("currency_code, expected_ids", [
@@ -79,3 +81,48 @@ def test_filter_by_currency(sample_transactions, currency_code, expected_ids):
     # Проверяем содержимое (сравниваем полные словари)
     for i, expected_item in enumerate(expected_ids):
         assert result_list[i] == expected_item
+
+
+def test_transaction_descriptions_sequential(sample_transactions):
+    """
+    Тестирует последовательное получение описаний через next().
+    """
+    desc_gen = transaction_descriptions(sample_transactions)
+
+    assert next(desc_gen) == "Перевод организации"
+    assert next(desc_gen) == "Перевод со счета на счет"
+    assert next(desc_gen) == "Перевод со счета на счет"
+    assert next(desc_gen) == "Перевод с карты на карту"
+    assert next(desc_gen) == "Перевод организации"
+
+
+def test_transaction_descriptions_empty_list():
+    """
+    Тестирует поведение с пустым списком транзакций.
+    """
+    result = list(transaction_descriptions([]))
+
+    assert result == []
+
+    gen = transaction_descriptions([])
+    with pytest.raises(StopIteration):
+        next(gen)
+
+
+@pytest.mark.parametrize("start, end, expected", [
+    (1, 3, [
+        "0000 0000 0000 0001",
+        "0000 0000 0000 0002",
+        "0000 0000 0000 0003"
+    ]),
+
+    (10, 12, [
+        "0000 0000 0000 0010",
+        "0000 0000 0000 0011",
+        "0000 0000 0000 0012"
+    ]),
+])
+def test_card_number_generator(start, end, expected):
+    '''Тестирует разные диапазоны чисел'''
+    result = list(card_number_generator(start, end))
+    assert result == expected

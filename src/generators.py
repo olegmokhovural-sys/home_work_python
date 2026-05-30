@@ -60,7 +60,7 @@ def filter_by_currency(transactions: list[dict[str, object]], currency_code: str
             yield transaction
 
 
-usd_transactions = filter_by_currency(transactions, "USD")
+usd_transactions = filter_by_currency(transactions, "RUB")
 for _ in range(2):
     print(next(usd_transactions))
 
